@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        .container {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 5px;
+        }
+
+        button {
+            width: 20%;
+            margin-top: 5px;
+            padding: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f0f0f0;
+            padding: 5px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-button {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <div>
+            <form>
+                <div class="input-grp">
+                    <input type="text" id="box" placeholder="Todo item">
+                    <button type="button" onclick="addItem()">Add</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <ul id="listItem"></ul>
+        </div>
+    </div>
+    <script>
+        function addItem() {
+            const itemInput = document.getElementById('box');
+            const listItem = document.getElementById('listItem');
+            const itemValue = itemInput.value.trim();
+
+            if (itemValue !== "") {
+                const li = document.createElement("li");
+                li.textContent = itemValue;
+
+                const removeButton = document.createElement("button");
+                removeButton.textContent = "Remove";
+                removeButton.className = "remove-button";
+
+                li.appendChild(removeButton);
+
+                listItem.appendChild(li);
+
+                removeButton.addEventListener("click", function () {
+                    listItem.removeChild(li);
+                });
+
+                itemInput.value = "";
+            } else {
+                alert('Please add a value to the item.');
+            }
+        }
+    </script>
+</body>
+
+</html>
